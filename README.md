@@ -8,10 +8,6 @@ FRONTEND
 
 ### `npm i`
 
-and
-
-### `npm install -g nodemon`
-
 2. Add .env file with PARK_AUTHORIZATION token and MONGODB_URL
 3. In the project directory, you can run:
 
@@ -23,11 +19,7 @@ BACKEND
 
 ### `npm i`
 
-and
-
-### `npm install -g nodemon`
-
 2. Add .env file with REACT_APP_API_ENDPOINT
 3. In the project directory, you can run:
 
-### `nodemon index.js`
+### `node app.js`
