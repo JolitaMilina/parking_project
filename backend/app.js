@@ -8,6 +8,7 @@ import {
   getEntries,
   getPriceList,
   postUpload,
+  updatePriceList,
 } from "./controllers/client.controllers.js";
 
 dotenv.config();
@@ -54,6 +55,7 @@ app.get("/", (_req, res) => {
 // ROUTES
 app.get("/api/entries", getEntries);
 app.get("/api/price_list", getPriceList);
+app.put("/api/price_list/:id", updatePriceList);
 app.post("/api/upload", upload.single("image"), postUpload);
 
 // STARTING SERVER

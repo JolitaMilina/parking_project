@@ -6,9 +6,9 @@ const Navigation = () => {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a class="navbar-brand" href="/">
-            <span class="fs-4">PARKING</span>
-            <span class="fw-light fst-italic text-danger">track</span>
+          <a className="navbar-brand" href="/">
+            <span className="fs-4">PARKING</span>
+            <span className="fw-light fst-italic text-danger">track</span>
           </a>
           <button
             className="navbar-toggler"

@@ -42,12 +42,16 @@ const Upload = () => {
       <h2 className="my-4">Licence plate scan</h2>
       <form className="p-4 border rounded bg-light">
         <label>Upload an image:</label>
-        <input class="form-control" type="file" onChange={handleFileChange} />
+        <input
+          className="form-control"
+          type="file"
+          onChange={handleFileChange}
+        />
 
-        <div class=" col-auto my-2">
+        <div className=" col-auto my-2">
           <button
             type="submit"
-            class="btn btn-primary mb-3"
+            className="btn btn-primary mb-3"
             onClick={handleUpload}
           >
             Upload

@@ -27,6 +27,25 @@ export const getPriceList = async (_req, res) => {
   }
 };
 
+export const updatePriceList = async (req, res) => {
+  try {
+    const updatedPriceList = await priceList.findByIdAndUpdate(
+      req.params.id,
+      { price: req.body.price },
+      { new: true }
+    );
+
+    if (!updatedPriceList) {
+      return res.status(404).json({ message: "Price List not found" });
+    }
+
+    res.status(200).json(updatedPriceList);
+  } catch (error) {
+    console.log("Failed to update price list: " + error);
+    res.status(500).json({ message: "Error updating" });
+  }
+};
+
 export const postUpload = (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });

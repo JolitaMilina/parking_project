@@ -5,11 +5,7 @@ const Administration = () => {
   const [submittedData, setSubmittedData] = useState([]);
   const [idToUpdate, setIdToUpdate] = useState(null);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const [formData, setFormData] = useState({
-    id: 0,
-    carType: "",
-    price: 0,
-  }); // AR GALIMA ISTRINTI OBJEKTA?
+  const [formData, setFormData] = useState({});
 
   useEffect(() => {
     fetchData();
@@ -21,9 +17,10 @@ const Administration = () => {
     fetch(`${process.env.REACT_APP_API_ENDPOINT}/price_list`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(submittedData);
+        // console.log(submittedData);
         setSubmittedData(data);
       })
+
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
@@ -33,20 +30,66 @@ const Administration = () => {
 
   const handleEdit = (item) => {
     setFormData({
-      id: item.id,
+      id: item._id,
+      price: item.price.toString(),
       carType: item.carType,
-      price: item.price,
+      weekdays: item.weekdays,
+      hours: item.hours,
     });
 
     setIdToUpdate(item._id);
     setShowUpdateForm(true);
   };
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      price: e.target.value,
+    });
+    console.log(formData);
+  };
+
+  const formatWeekdays = (weekdays) => {
+    if (weekdays.length > 1) {
+      return `${Math.min.apply(Math, weekdays)} - ${Math.max.apply(
+        Math,
+        weekdays
+      )}`;
+    } else {
+      return weekdays;
+    }
+  };
+
+  const formatHours = (hours) => {
+    return `${Math.min.apply(Math, hours)} -
+                  ${Math.max.apply(Math, hours)} h`;
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/price_list/${idToUpdate}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          fetchData();
+
+          setShowUpdateForm(false);
+        }
+      })
+
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
+  };
 
   return (
     <>
-      {" "}
       <h2 className="my-4">Administration</h2>
       <div>
         <table className="table table-striped">
@@ -62,16 +105,8 @@ const Administration = () => {
           <tbody>
             {submittedData.map((item) => (
               <tr key={item._id}>
-                <td>
-                  {item.weekdays.length > 1
-                    ? `${Math.min.apply(Math, item.weekdays)} -
-                  ${Math.max.apply(Math, item.weekdays)}`
-                    : item.weekdays}
-                </td>
-                <td>
-                  {Math.min.apply(Math, item.hours)} -
-                  {Math.max.apply(Math, item.hours)} h
-                </td>
+                <td>{formatWeekdays(item.weekdays)}</td>
+                <td>{formatHours(item.hours)}</td>
                 <td>{item.carType}</td>
                 <td className="text-end">
                   {Intl.NumberFormat("lt-LT", {
@@ -94,14 +129,21 @@ const Administration = () => {
         </table>
         {showUpdateForm && (
           <form className="p-4 border rounded bg-light">
-            {`Update price for ${formData.carType}`}
+            Update price for{" "}
+            {`${formatWeekdays(formData.weekdays)} wkd ${formatHours(
+              formData.hours
+            )} ${formData.carType}`}
             <input
               onChange={handleChange}
               value={formData.price}
               type="text"
               className="form-control, col-1 m-2"
             ></input>
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleUpdate}
+            >
               Update
             </button>
           </form>
