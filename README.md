@@ -6,7 +6,9 @@ FRONTEND
 
 1. In the project directory, you can run:
 
-### `npm i` and
+### `npm i`
+
+and
 
 ### `npm install -g nodemon`
 
@@ -19,7 +21,9 @@ BACKEND
 
 1. In the project directory, you can run:
 
-### `npm i` and
+### `npm i`
+
+and
 
 ### `npm install -g nodemon`
 
