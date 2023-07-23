@@ -1,8 +1,8 @@
-PARKING PAYMENT SYSTEM
+# PARKING PAYMENT SYSTEM
 
 # Getting Started with Create React App
 
-# FRONTEND
+FRONTEND
 
 1. In the project directory, you can run:
 
@@ -13,7 +13,7 @@ PARKING PAYMENT SYSTEM
 
 ### `npm start`
 
-# BACKEND
+BACKEND
 
 1. In the project directory, you can run:
 
