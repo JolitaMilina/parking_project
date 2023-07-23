@@ -1,0 +1,10 @@
+POST http://localhost:5001/api/entries
+content-type: application/json
+
+{
+  "carType": "truck",
+  "entryIn": "2023-07-29T15:20:00Z",
+  "entryOut":"2023-07-29T18:20:00Z",
+  "price": "1"
+  
+}
