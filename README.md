@@ -18,6 +18,7 @@ FRONTEND
 
 BACKEND
 
+
 1. In the project directory, you can run:
 
 ### `npm i`
@@ -26,3 +27,10 @@ BACKEND
 3. In the project directory, you can run:
 
 ### `node app.js`
+![Administration](https://github.com/JolitaMilina/parking_project/assets/109171219/6557875b-f6cb-436b-9e9f-cee7ef6be949)
+![entries](https://github.com/JolitaMilina/parking_project/assets/109171219/dae847e3-bf17-4e04-b878-59063dad534e)
+![upload](https://github.com/JolitaMilina/parking_project/assets/109171219/8889d84d-9526-42bd-bb7f-b3820a77b7ae)
+
+
+
+
